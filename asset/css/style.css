@@ -21,6 +21,7 @@ html {
 
 body {
   font-family: "Work Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 section {
@@ -188,10 +189,12 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 15px;
+  justify-content: center;
 }
 
 .feature .container .cart {
   padding: 20px;
+  max-width: 100%;
   text-align: center;
 }
 
@@ -214,18 +217,27 @@ section {
 /* Start Session Feature */
 
 /* Start Session Services */
-.services .content-services {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
-  gap: 35px;
+.services .container {
   padding-top: var(--section-padding);
+  display: flex;
+}
+.services .container > .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  align-content: center;
+  gap: 40px;
 }
 
 .services .cart {
   display: flex;
   gap: 20px;
 }
-
+@media (max-width: 580px) {
+  .services .container .cart {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 .services .cart i {
   color: var(--main-color);
   font-size: 35px;
@@ -241,6 +253,28 @@ section {
   line-height: 20px;
   font-size: 15px;
 }
+.services .container .image {
+  position: relative;
+  margin-left: 30px;
+}
+.services .container .image::before {
+  content: "";
+  width: 100px;
+  position: absolute;
+  height: calc(100% + 100px);
+  top: -50px;
+  background-color: var(--secondary-color);
+  right: -30px;
+  z-index: -1;
+}
+.services .container img {
+  max-width: 300px;
+}
+@media (max-width: 991px) {
+  .services .container .image {
+    display: none;
+  }
+}
 /* End Session Services */
 
 /* Start Session Portfolio */
@@ -250,17 +284,20 @@ section {
 
 .portfolio .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, auto));
   gap: 20px;
   padding-top: var(--section-padding);
 }
 
 .portfolio .container .card {
+  max-width: 100%;
   background-color: #fff;
 }
-
+.portfolio .container .card .image {
+  position: relative;
+}
 .portfolio .container .card img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .portfolio .container .card .body-card {
@@ -384,11 +421,11 @@ section {
 }
 
 .contact a {
-  font-size: 30px;
+  font-size: 20px;
   color: var(--main-color);
   text-decoration: none;
   margin-bottom: 10px;
-  display: block;
+  display: inline-block;
   font-weight: 900;
 }
 
